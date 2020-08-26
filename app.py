@@ -1,8 +1,6 @@
 import streamlit as st
-import altair as alt
 import pandas as pd
 import numpy as np
-from PIL import Image
 import pickle
 
 st.title("Sales Prediction App")
