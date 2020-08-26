@@ -22,40 +22,45 @@ def get_prediction():
     pred = model.predict(df)
     return pred[0]
 
-year = st.sidebar.selectbox(
-    'Select Year',
-    (1997,1998,1999,2000,2001,2002,2003,2004,2005,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
-st.write('**You selected:**', year)
+def main():
+    year = st.sidebar.selectbox(
+        'Select Year',
+        (1997,1998,1999,2000,2001,2002,2003,2004,2005,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
+    st.write('**You selected:**', year)
 
-console = st.sidebar.selectbox(
-    'Select Console',
-    ('dc', 'wiiu', 'psv', 'ps', '3ds', 'xone', 'ps4', 'gba', 'gc', 'psp', 'ds', 'wii', 'x', 'pc', 'ps3', 'x360', 'ps2')
-)
-st.write('**You selected:**', console)
+    console = st.sidebar.selectbox(
+        'Select Console',
+        ('dc', 'wiiu', 'psv', 'ps', '3ds', 'xone', 'ps4', 'gba', 'gc', 'psp', 'ds', 'wii', 'x', 'pc', 'ps3', 'x360', 'ps2')
+    )
+    st.write('**You selected:**', console)
 
-category = st.sidebar.selectbox(
-    'Select Category',
-    ('puzzle', 'adventure', 'strategy', 'simulation', 'fighting', 'platform', 'misc', 'racing', 'role-playing', 'shooter', 'sports', 'action')
-)
-st.write('**You selected:**', category)
+    category = st.sidebar.selectbox(
+        'Select Category',
+        ('puzzle', 'adventure', 'strategy', 'simulation', 'fighting', 'platform', 'misc', 'racing', 'role-playing', 'shooter', 'sports', 'action')
+    )
+    st.write('**You selected:**', category)
 
-publisher = st.sidebar.selectbox(
-    'Select Publisher',
-    ('Bethesda', 'Nippon', 'Ichi', 'Rising', 'Softworks', 'Deep', 'Silver', 'Acclaim', '505', 'Lucasarts', 'Star', 'Software', 'Disney', 'Codemasters', 'Eidos', 'Vivendi', 'Midway', 'Tecmo', 'Koei', 'Square', 'Enix', 'Capcom', 'Warner', 'Bros.', 'Atari', 'Microsoft', 'Game', 'Namco', 'Bandai', 'Konami', 'Digital', 'Studios', 'Sega', 'Take-Two', 'Computer', 'Sony', 'Thq', 'Nintendo', 'Ubisoft', 'Activision', 'Games', 'Interactive', 'Entertainment', 'Electronic', 'Arts')
-)
-st.write('**You selected:**', publisher)
+    publisher = st.sidebar.selectbox(
+        'Select Publisher',
+        ('Bethesda', 'Nippon', 'Ichi', 'Rising', 'Softworks', 'Deep', 'Silver', 'Acclaim', '505', 'Lucasarts', 'Star', 'Software', 'Disney', 'Codemasters', 'Eidos', 'Vivendi', 'Midway', 'Tecmo', 'Koei', 'Square', 'Enix', 'Capcom', 'Warner', 'Bros.', 'Atari', 'Microsoft', 'Game', 'Namco', 'Bandai', 'Konami', 'Digital', 'Studios', 'Sega', 'Take-Two', 'Computer', 'Sony', 'Thq', 'Nintendo', 'Ubisoft', 'Activision', 'Games', 'Interactive', 'Entertainment', 'Electronic', 'Arts')
+    )
+    st.write('**You selected:**', publisher)
 
-rating = st.sidebar.selectbox(
-    'Select Rating',
-    ('T', 'E', 'M', 'E10+', 'RP', 'K-A')
-)
-st.write('**You selected:**', rating)
+    rating = st.sidebar.selectbox(
+        'Select Rating',
+        ('T', 'E', 'M', 'E10+', 'RP', 'K-A')
+    )
+    st.write('**You selected:**', rating)
 
-user_rating = st.sidebar.slider('Select User Rating', 0.0, 1.5, 0.05, 0.01)
-st.write('**You selected:**', user_rating)
+    user_rating = st.sidebar.slider('Select User Rating', 0.0, 1.5, 0.05, 0.01)
+    st.write('**You selected:**', user_rating)
 
-critic_rating = st.sidebar.slider('Select Critic Rating', 0.0, 10.0, 1.0, 1.0)
-st.write('**You selected:**', critic_rating)
-if st.button('Run Me!'):
-    result = get_prediction()
-    st.write('**Predicted Sales in Millions:**', result)
+    critic_rating = st.sidebar.slider('Select Critic Rating', 0.0, 10.0, 1.0, 1.0)
+    st.write('**You selected:**', critic_rating)
+    if st.button('Run Me!'):
+        result = get_prediction()
+        st.write('**Predicted Sales in Millions:**', result)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
