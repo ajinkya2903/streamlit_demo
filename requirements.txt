@@ -4,4 +4,4 @@ numpy==1.18.5
 pickleshare==0.7.5
 cloudpickle==0.6.1
 jsonpickle==1.2
-sklearn==0.20.0
+scikit-learn==0.20.0
