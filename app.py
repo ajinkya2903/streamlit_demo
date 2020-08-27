@@ -3,8 +3,10 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+from PIL import Image
 
 st.title("Sales Prediction App")
+st.image("xbox_image.png", width=300)
 st.subheader(
 """
 This is the application which gives the predicted sales for Video game companies based on different aspects. So lets try and see!.
