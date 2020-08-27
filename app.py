@@ -7,7 +7,7 @@ import os
 st.title("Sales Prediction App")
 st.subheader(
 """
-This is a demo of a app which gives the predicted sales for different aspects such as consoles, ratings, publisher, category and many more. You will encounter it below.
+This is the application which gives the predicted sales for Video game companies based on different aspects. So lets try and see!.
 """)
 st.text("")
 
@@ -23,44 +23,41 @@ def get_prediction():
     pred = model.predict(df)
     return pred[0]
 
-def main():
-    year = st.sidebar.selectbox(
-        'Select Year',
-        (1997,1998,1999,2000,2001,2002,2003,2004,2005,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
-    st.write('**You selected:**', year)
 
-    console = st.sidebar.selectbox(
-        'Select Console',
-        ('dc', 'wiiu', 'psv', 'ps', '3ds', 'xone', 'ps4', 'gba', 'gc', 'psp', 'ds', 'wii', 'x', 'pc', 'ps3', 'x360', 'ps2')
-    )
-    st.write('**You selected:**', console)
+year = st.sidebar.selectbox(
+'Select Year',
+(1997,1998,1999,2000,2001,2002,2003,2004,2005,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019))
+st.write('**You selected:**', year)
 
-    category = st.sidebar.selectbox(
-        'Select Category',
-        ('puzzle', 'adventure', 'strategy', 'simulation', 'fighting', 'platform', 'misc', 'racing', 'role-playing', 'shooter', 'sports', 'action')
-    )
-    st.write('**You selected:**', category)
+console = st.sidebar.selectbox(
+'Select Console',
+('dc', 'wiiu', 'psv', 'ps', '3ds', 'xone', 'ps4', 'gba', 'gc', 'psp', 'ds', 'wii', 'x', 'pc', 'ps3', 'x360', 'ps2')
+)
+st.write('**You selected:**', console)
 
-    publisher = st.sidebar.selectbox(
-        'Select Publisher',
-        ('Bethesda', 'Nippon', 'Ichi', 'Rising', 'Softworks', 'Deep', 'Silver', 'Acclaim', '505', 'Lucasarts', 'Star', 'Software', 'Disney', 'Codemasters', 'Eidos', 'Vivendi', 'Midway', 'Tecmo', 'Koei', 'Square', 'Enix', 'Capcom', 'Warner', 'Bros.', 'Atari', 'Microsoft', 'Game', 'Namco', 'Bandai', 'Konami', 'Digital', 'Studios', 'Sega', 'Take-Two', 'Computer', 'Sony', 'Thq', 'Nintendo', 'Ubisoft', 'Activision', 'Games', 'Interactive', 'Entertainment', 'Electronic', 'Arts')
-    )
-    st.write('**You selected:**', publisher)
+category = st.sidebar.selectbox(
+'Select Category',
+('puzzle', 'adventure', 'strategy', 'simulation', 'fighting', 'platform', 'misc', 'racing', 'role-playing', 'shooter', 'sports', 'action')
+)
+st.write('**You selected:**', category)
 
-    rating = st.sidebar.selectbox(
-        'Select Rating',
-        ('T', 'E', 'M', 'E10+', 'RP', 'K-A')
-    )
-    st.write('**You selected:**', rating)
+publisher = st.sidebar.selectbox(
+'Select Publisher',
+('Bethesda', 'Nippon', 'Ichi', 'Rising', 'Softworks', 'Deep', 'Silver', 'Acclaim', '505', 'Lucasarts', 'Star', 'Software', 'Disney', 'Codemasters', 'Eidos', 'Vivendi', 'Midway', 'Tecmo', 'Koei', 'Square', 'Enix', 'Capcom', 'Warner', 'Bros.', 'Atari', 'Microsoft', 'Game', 'Namco', 'Bandai', 'Konami', 'Digital', 'Studios', 'Sega', 'Take-Two', 'Computer', 'Sony', 'Thq', 'Nintendo', 'Ubisoft', 'Activision', 'Games', 'Interactive', 'Entertainment', 'Electronic', 'Arts')
+)
+st.write('**You selected:**', publisher)
 
-    user_rating = st.sidebar.slider('Select User Rating', 0.0, 1.5, 0.05, 0.01)
-    st.write('**You selected:**', user_rating)
+rating = st.sidebar.selectbox(
+'Select Rating',
+('T', 'E', 'M', 'E10+', 'RP', 'K-A')
+)
+st.write('**You selected:**', rating)
 
-    critic_rating = st.sidebar.slider('Select Critic Rating', 0.0, 10.0, 1.0, 1.0)
-    st.write('**You selected:**', critic_rating)
-    if st.button('Run Me!'):
-        result = get_prediction()
-        st.write('**Predicted Sales in Millions:**', result)
+user_rating = st.sidebar.slider('Select User Rating', 0.0, 1.5, 0.05, 0.01)
+st.write('**You selected:**', user_rating)
 
-if __name__ == "__main__":
-    main()
+critic_rating = st.sidebar.slider('Select Critic Rating', 0.0, 10.0, 1.0, 1.0)
+st.write('**You selected:**', critic_rating)
+if st.button('Run Me!'):
+    result = get_prediction()
+    st.header('Predicted Sales : {:.2f} Million USD'.format(result))
